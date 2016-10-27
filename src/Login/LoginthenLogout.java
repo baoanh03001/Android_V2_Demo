@@ -1,6 +1,8 @@
 package Login;
 
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.AndroidKeyMetastate;
 import org.apache.commons.exec.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -12,7 +14,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -23,6 +27,11 @@ import java.util.regex.Pattern;
  */
 
 public class LoginthenLogout {
+
+    private static AndroidDriver driver;
+    private static WebDriverWait wait;
+    private static WebElement element;
+
     public static void main(String[] args) throws Exception {
 
         try {
@@ -45,39 +54,29 @@ public class LoginthenLogout {
 
         capabilities.setCapability("appPackage","com.mservice");
 
-        CharSequence sdt = "01231231236";
+        String sdt = "01231231236";
         String pass = "111111";
         String OTP = "";
 
-        AndroidDriver driver=new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+        driver=new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        WebElement element = driver.findElement(By.id("com.mservice:id/main_content"));
+        wait = new WebDriverWait(driver, 30);
+        element = driver.findElement(By.id("com.mservice:id/main_content"));
         wait.until(ExpectedConditions.visibilityOf(element));
-        Dimension size = driver.manage().window().getSize();
-        int startx = (int) (size.width * 0.99);
-        int endx = (int) (size.width * 0.001);
-        int starty = size.height / 2;
-        driver.swipe(startx, starty, endx, starty, 150);
-        Thread.sleep(2000);
-        driver.swipe(endx, starty, startx, starty, 150);
-        Thread.sleep(2000);
+//        swipeScreen("right", 1);
+//        Thread.sleep(2000);
+//        swipeScreen("left", 1);
+//        Thread.sleep(2000);
         driver.findElement(By.id("com.mservice:id/button_continue_text")).click();
-        element = driver.findElement(By.id("com.mservice:id/tv_phone_number"));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
-        //driver.findElement(By.id("com.mservice:id/tv_phone_number")).sendKeys(sdt);
-        for (int i: convert2KeyCode(sdt)) {
-            driver.pressKeyCode(i);
-        }
+        typingText(sdt, "com.mservice:id/tv_phone_number");
         driver.findElement(By.id("com.mservice:id/button_continue_text")).click();
         driver.findElement(By.id("com.mservice:id/btnConfirm")).click(); //btnCancel
         while (OTP == "") {
-            OTP = getOTP(sdt.toString());
+            OTP = getOTP(sdt);
         }
-        driver.findElement(By.id("com.mservice:id/et_sms_code_enter")).sendKeys(OTP);
+        typingText(OTP, "com.mservice:id/et_sms_code_enter");
         driver.findElement(By.id("com.mservice:id/button_confirm_sms_code_text")).click();
-        driver.findElement(By.id("com.mservice:id/txtPass1")).sendKeys(pass);
+        typingText(pass, "com.mservice:id/txtPass1");
         driver.findElement(By.id("com.mservice:id/button_confirm_text")).click();
         driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.view.View[1]/android.view.View[4]/android.widget.ImageView[1]")).click();
         driver.findElement(By.xpath("//android.widget.TextView[@text='ĐỒNG Ý']")).click();
@@ -155,16 +154,56 @@ public class LoginthenLogout {
         return "";
     }
 
-    private static int[] convert2KeyCode(CharSequence txt) {
+    private static void typingText(String txt, String eid) {
 
         int[] txtKeyCode = new int[txt.length()];
         for (int i = 0; i < txt.length(); i++) {
-            char c = txt.charAt(i);
-            KeyStroke ks = KeyStroke.getKeyStroke(c);
-            txtKeyCode[i] = ks.getKeyCode();
-            System.out.println(ks.getKeyCode());
+            String k = "KEYCODE_" + txt.charAt(i);
+            int keyEvent = 0;
+            try {
+                Field f = AndroidKeyCode.class.getField(k);
+                keyEvent = f.getInt(null);
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (SecurityException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+            txtKeyCode[i] = keyEvent;
         }
 
-        return txtKeyCode;
+        driver.findElement(By.id(eid)).click();
+        element = driver.findElement(By.id(eid));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+
+        for (int i: txtKeyCode) {
+            driver.pressKeyCode(i);
+        }
+    }
+
+    private static void swipeScreen(String direction, int times) throws InterruptedException{
+        Dimension size = driver.manage().window().getSize();
+
+        switch (direction) {
+            case "left":
+                for (int i = 0; i < times; i++) {
+                    driver.swipe((int)(size.width*0.001), size.height/2, (int)(size.width*0.99), size.height/2, 150);
+                }
+            case "right":
+                for (int i = 0; i < times; i++) {
+                    driver.swipe((int)(size.width*0.99), size.height/2, (int)(size.width*0.001), size.height/2, 150);
+                }
+            case "up":
+                for (int i = 0; i < times; i++) {
+                    driver.swipe(size.width/2, (int)(size.height*0.99), size.width/2, (int)(size.height*0.001), 150);
+                }
+            case "down":
+                for (int i = 0; i < times; i++) {
+                    driver.swipe(size.width/2, (int)(size.height*0.001), size.width/2, (int)(size.height*0.99), 150);
+                }
+        }
     }
 }
