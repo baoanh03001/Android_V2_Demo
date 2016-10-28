@@ -1,5 +1,6 @@
 package Login;
 
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
 import org.apache.commons.exec.*;
@@ -15,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,8 +42,9 @@ public class LoginthenLogout {
         DesiredCapabilities capabilities=new DesiredCapabilities();
         capabilities.setCapability("automationName", "Appium");
         capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("platformVersion","5.1");
-        capabilities.setCapability("deviceName","Samsung Galaxy S6 - 5.1.0 - API 22 - 1440x2560");
+        capabilities.setCapability("platformVersion","6.0.1");
+        //capabilities.setCapability("deviceName","Samsung Galaxy S6 - 5.1.0 - API 22 - 1440x2560");
+        capabilities.setCapability("deviceName","Chip's S7");
         capabilities.setCapability("app","/Users/luongle/Downloads/EU_v3464_17.7.apk");
         capabilities.setCapability("appPackage","com.mservice");
 
@@ -69,8 +72,12 @@ public class LoginthenLogout {
         driver.findElement(By.id("com.mservice:id/button_confirm_sms_code_text")).click();
         typingText(pass, "com.mservice:id/txtPass1");
         driver.findElement(By.id("com.mservice:id/button_confirm_text")).click();
-        driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.view.View[1]/android.view.View[4]/android.widget.ImageView[1]")).click();
-        driver.findElement(By.xpath("//android.widget.TextView[@text='ĐỒNG Ý']")).click();
+        //driver.findElement(By.xpath("//android.widget.ImageView[3]")).click();
+        element = driver.findElement(By.id("com.mservice:id/root"));
+        wait.until(ExpectedConditions.visibilityOf(element));
+        driver.findElement(MobileBy.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[4]/android.widget.ImageView[1]")).click();
+        driver.findElement(MobileBy.xpath("//android.widget.TextView[@text='ĐỒNG Ý']")).click();
+        driver.navigate().back();
         driver.navigate().back();
         driver.quit();
         stopAppium();
