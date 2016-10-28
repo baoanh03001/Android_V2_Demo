@@ -3,20 +3,22 @@ package Login;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.apache.commons.exec.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -47,6 +49,7 @@ public class LoginthenLogout {
         capabilities.setCapability("deviceName","Chip's S7");
         capabilities.setCapability("app","/Users/luongle/Downloads/EU_v3464_17.7.apk");
         capabilities.setCapability("appPackage","com.mservice");
+        capabilities.setCapability(MobileCapabilityType.TAKES_SCREENSHOT, "true");
 
         String sdt = "01231231236";
         String pass = "111111";
@@ -56,6 +59,7 @@ public class LoginthenLogout {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 30);
         element = driver.findElement(By.id("com.mservice:id/main_content"));
+        takeScreenShot();
         wait.until(ExpectedConditions.visibilityOf(element));
 //        swipeScreen("right", 1);
 //        Thread.sleep(2000);
@@ -69,6 +73,7 @@ public class LoginthenLogout {
             OTP = getOTP(sdt);
         }
         typingText(OTP, "com.mservice:id/et_sms_code_enter");
+        takeScreenShot();
         driver.findElement(By.id("com.mservice:id/button_confirm_sms_code_text")).click();
         typingText(pass, "com.mservice:id/txtPass1");
         driver.findElement(By.id("com.mservice:id/button_confirm_text")).click();
@@ -76,11 +81,13 @@ public class LoginthenLogout {
         element = driver.findElement(By.id("com.mservice:id/root"));
         wait.until(ExpectedConditions.visibilityOf(element));
         driver.findElement(MobileBy.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[4]/android.widget.ImageView[1]")).click();
+        takeScreenShot();
         driver.findElement(MobileBy.xpath("//android.widget.TextView[@text='ĐỒNG Ý']")).click();
         driver.navigate().back();
         driver.navigate().back();
         driver.quit();
         stopAppium();
+
 
 //        //driver.findElement(By.xpath("android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.ScrollView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.EditText[1]"));
 //        driver.findElementByAndroidUIAutomator("UiSelector().className(\"android.widget.EditText\")").sendKeys("123");
@@ -202,6 +209,26 @@ public class LoginthenLogout {
                 for (int i = 0; i < times; i++) {
                     driver.swipe(size.width/2, (int)(size.height*0.001), size.width/2, (int)(size.height*0.99), 150);
                 }
+        }
+    }
+
+    public static void takeScreenShot() {
+        // Set folder name to store screenshots.
+        String destDir = "screenshots";
+        // Capture screenshot.
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        // Set date format to set It as screenshot file name.
+        DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy__hh_mm_ssaa");
+        // Create folder under project with name "screenshots" provided to destDir.
+        new File(destDir).mkdirs();
+        // Set file name using current date time.
+        String destFile = dateFormat.format(new Date()) + ".png";
+
+        try {
+            // Copy paste file at destination folder location
+            FileUtils.copyFile(scrFile, new File(destDir + "/" + destFile));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
