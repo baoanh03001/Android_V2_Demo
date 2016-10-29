@@ -2,6 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79c8a8b1-23dc-407b-b0a0-c4a269075f93" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/java-client-3.2.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/miglayout-4.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/selenium-server-standalone-2.53.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/miglayout_4_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Login/AndroidDevice.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Android_V2_Demo/Login/LoginthenLogout.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/java_client_3_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/java_client_3_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/selenium_server_standalone_2_53_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/selenium_server_standalone_2_53_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Android_V2_Demo.iml" afterPath="$PROJECT_DIR$/Android_V2_Demo.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Login/LoginthenLogout.java" afterPath="$PROJECT_DIR$/src/Login/LoginthenLogout.java" />
     </list>
     <ignored path="Android_V2_Demo.iws" />
@@ -28,65 +39,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LoginSuccess.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Login/LoginSuccess.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="48" column="30" selection-start-line="47" selection-start-column="11" selection-end-line="48" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginthenLogout.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LoginthenLogout.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Login/LoginthenLogout.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="83" column="25" selection-start-line="83" selection-start-column="25" selection-end-line="83" selection-end-column="25" />
+            <state relative-caret-position="77">
+              <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#run#0;class#LoginthenLogout#0" expanded="false" />
+                <element signature="method#main#0;class#LoginthenLogout#0" expanded="false" />
                 <element signature="method#startAppium#0;class#LoginthenLogout#0" expanded="false" />
                 <element signature="method#stopAppium#0;class#LoginthenLogout#0" expanded="false" />
-                <element signature="method#getOTP#0;class#LoginthenLogout#0" expanded="false" />
                 <element signature="method#typingText#0;class#LoginthenLogout#0" expanded="false" />
                 <element signature="method#swipeScreen#0;class#LoginthenLogout#0" expanded="false" />
                 <element signature="method#takeScreenShot#0;class#LoginthenLogout#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="28-Oct-2016__01_54_02PM.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/screenshots/28-Oct-2016__01_54_02PM.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="28-Oct-2016__01_54_32PM.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/screenshots/28-Oct-2016__01_54_32PM.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="28-Oct-2016__01_54_52PM.png" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/screenshots/28-Oct-2016__01_54_52PM.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CollectingLogOutputStream.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Login/CollectingLogOutputStream.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="18" selection-end-column="1" />
-              <folding>
-                <element signature="e#356#357#0" expanded="false" />
-                <element signature="e#387#388#0" expanded="false" />
-                <element signature="e#424#425#0" expanded="false" />
-                <element signature="e#452#453#0" expanded="false" />
+                <element signature="method#loadDevices#0;class#LoginthenLogout#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -114,6 +80,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/Login/CollectingLogOutputStream.java" />
         <option value="$PROJECT_DIR$/src/Login/LoginSuccess.java" />
+        <option value="$PROJECT_DIR$/src/Login/Androiddevice.java" />
+        <option value="$PROJECT_DIR$/src/Login/AndroidDevice.java" />
         <option value="$PROJECT_DIR$/src/Login/LoginthenLogout.java" />
       </list>
     </option>
@@ -158,15 +126,9 @@
               <option name="myItemId" value="Android_V2_Demo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Android_V2_Demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android_V2_Demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -176,14 +138,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Android_V2_Demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Login" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -206,12 +160,17 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/miglayout-4.0.jar!/" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.idea/libraries" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.LoginthenLogout">
     <configuration default="false" name="LoginthenLogout" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -544,7 +503,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -557,7 +516,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -566,13 +527,14 @@
         <state relative-caret-position="645">
           <caret line="60" column="71" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="71" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#run#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#main#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#startAppium#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#stopAppium#0;class#LoginthenLogout#0" expanded="false" />
-            <element signature="method#getOTP#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#typingText#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#swipeScreen#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#takeScreenShot#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#loadDevices#0;class#LoginthenLogout#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -582,10 +544,7 @@
         <state relative-caret-position="105">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="18" selection-end-column="1" />
           <folding>
-            <element signature="e#356#357#0" expanded="false" />
-            <element signature="e#387#388#0" expanded="false" />
-            <element signature="e#424#425#0" expanded="false" />
-            <element signature="e#452#453#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -594,7 +553,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -603,13 +564,14 @@
         <state relative-caret-position="645">
           <caret line="60" column="71" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="71" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#run#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#main#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#startAppium#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#stopAppium#0;class#LoginthenLogout#0" expanded="false" />
-            <element signature="method#getOTP#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#typingText#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#swipeScreen#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#takeScreenShot#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#loadDevices#0;class#LoginthenLogout#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -619,10 +581,7 @@
         <state relative-caret-position="105">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="18" selection-end-column="1" />
           <folding>
-            <element signature="e#356#357#0" expanded="false" />
-            <element signature="e#387#388#0" expanded="false" />
-            <element signature="e#424#425#0" expanded="false" />
-            <element signature="e#452#453#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -631,7 +590,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -640,13 +601,14 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#run#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#main#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#startAppium#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#stopAppium#0;class#LoginthenLogout#0" expanded="false" />
-            <element signature="method#getOTP#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#typingText#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#swipeScreen#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#takeScreenShot#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#loadDevices#0;class#LoginthenLogout#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -655,7 +617,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -664,13 +628,14 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#run#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#main#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#startAppium#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#stopAppium#0;class#LoginthenLogout#0" expanded="false" />
-            <element signature="method#getOTP#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#typingText#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#swipeScreen#0;class#LoginthenLogout#0" expanded="false" />
             <element signature="method#takeScreenShot#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#loadDevices#0;class#LoginthenLogout#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -696,41 +661,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Login/CollectingLogOutputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="18" selection-end-column="1" />
-          <folding>
-            <element signature="e#356#357#0" expanded="false" />
-            <element signature="e#387#388#0" expanded="false" />
-            <element signature="e#424#425#0" expanded="false" />
-            <element signature="e#452#453#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Login/LoginSuccess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="48" column="30" selection-start-line="47" selection-start-column="11" selection-end-line="48" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Login/LoginthenLogout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="83" column="25" selection-start-line="83" selection-start-column="25" selection-end-line="83" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#startAppium#0;class#LoginthenLogout#0" expanded="false" />
-            <element signature="method#stopAppium#0;class#LoginthenLogout#0" expanded="false" />
-            <element signature="method#getOTP#0;class#LoginthenLogout#0" expanded="false" />
-            <element signature="method#typingText#0;class#LoginthenLogout#0" expanded="false" />
-            <element signature="method#swipeScreen#0;class#LoginthenLogout#0" expanded="false" />
-            <element signature="method#takeScreenShot#0;class#LoginthenLogout#0" expanded="false" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/screenshots/28-Oct-2016__01_54_52PM.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/screenshots/28-Oct-2016__01_54_02PM.png">
@@ -743,9 +676,84 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/screenshots/28-Oct-2016__01_54_52PM.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/src/Login/CollectingLogOutputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="18" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/src.zip!/java/util/LinkedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="887" column="0" selection-start-line="887" selection-start-column="0" selection-end-line="887" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="1966" column="0" selection-start-line="1966" selection-start-column="0" selection-end-line="1966" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/src.zip!/java/util/AbstractList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding>
+            <element signature="e#4990#4991#0" expanded="false" />
+            <element signature="e#5047#5048#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login/LoginSuccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-135">
+          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="24" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/src.zip!/java/awt/event/ActionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login/AndroidDevice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login/LoginthenLogout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+          <folding>
+            <element signature="method#run#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#main#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#startAppium#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#stopAppium#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#typingText#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#swipeScreen#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#takeScreenShot#0;class#LoginthenLogout#0" expanded="false" />
+            <element signature="method#loadDevices#0;class#LoginthenLogout#0" expanded="false" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>
@@ -812,7 +820,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>java-client-3.2.0</last-edited>
+          <last-edited>selenium-server-standalone-2.53.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
