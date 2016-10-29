@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.util.List;
 import java.io.BufferedReader;
@@ -35,7 +36,7 @@ import java.util.regex.Pattern;
  * Created by luongle on 10/27/16.
  */
 
-public class LoginthenLogout implements Runnable{
+public class LoginthenLogout implements Runnable {
 
     @Override public synchronized void run() {
         try {
@@ -168,7 +169,7 @@ public class LoginthenLogout implements Runnable{
         driver.get("http://172.16.43.132:9091/#/streams/MoMo%20Auth%20Code");
         WebDriverWait wait = new WebDriverWait(driver, 30);
         WebElement element = driver.findElement(By.className("stream-lines"));
-        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.textToBePresentInElement(element, sdt));
         String[] lines = element.getText().split(System.getProperty("line.separator"));
         for (String a: lines) {
             if (a.contains(sdt)) {
@@ -267,6 +268,8 @@ public class LoginthenLogout implements Runnable{
         final JButton browseAPK = new JButton("Choose");
         browseAPK.addActionListener((e) -> {
             final JFileChooser fc = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("APK Files", "apk", "APK");
+            fc.setFileFilter(filter);
             int returnVal = fc.showOpenDialog(fc);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fc.getSelectedFile();
@@ -287,6 +290,8 @@ public class LoginthenLogout implements Runnable{
 
         });
 
+
+
         final JButton clickRun = new JButton("Run!");
         clickRun.addActionListener((e) -> {
             String deviceName = String.valueOf(comboBox.getSelectedItem());
@@ -299,7 +304,7 @@ public class LoginthenLogout implements Runnable{
             isConfigurated = true;
         });
 
-        JButton clickRefresh = new JButton("Refresh!");
+        JButton clickRefresh = new JButton("Refresh");
         clickRefresh.addActionListener((e) -> {
             try {
                 List<AndroidDevice> newDevices = loadDevices();
@@ -320,10 +325,12 @@ public class LoginthenLogout implements Runnable{
                 t.stop();
                 driver.quit();
                 stopAppium();
+                JOptionPane.showMessageDialog(null, "Appium server stopped.");
+                System.out.println("Appium server stopped.");
             } catch (Exception e1) {
-                e1.printStackTrace();
+                JOptionPane.showMessageDialog(null, "The Appium server is not started yet.", "Appium warning", JOptionPane.WARNING_MESSAGE);
+                System.out.println("The Appium server is not started yet.");
             }
-            System.out.println("Appium server stopped");
         });
 
 
@@ -353,13 +360,12 @@ public class LoginthenLogout implements Runnable{
             if (line.contains("\t")) {
                 AndroidDevice device = new AndroidDevice();
                 device.setIP(line.substring(0, line.indexOf("\t")).trim());
-                device.setStatus(line.substring(line.indexOf("\t")).trim());
                 devices.add(device);
             }
         }
 
         for (AndroidDevice d: devices) {
-            if (!d.getStatus().contains("offline")) {
+            try {
                 cmd = "adb -s " + d.getIP() + " shell getprop ro.build.version.release";
                 pr = run.exec(cmd);
                 buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
@@ -368,7 +374,12 @@ public class LoginthenLogout implements Runnable{
                 pr = run.exec(cmd);
                 buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
                 d.setName(buf.readLine().trim());
+            } catch (Exception e) {
+                System.out.println("Connected devices are offline. Please reconnect the devices.");
             }
+
+
+
         }
 
         buf.close();

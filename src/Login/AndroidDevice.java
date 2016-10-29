@@ -4,7 +4,7 @@ package Login;
  * Created by luongle on 10/28/16.
  */
 public class AndroidDevice {
-    private String name = "", version = "", ip = "", status = "";
+    private String name = "", version = "", ip = "";
     public void setIP(String ip) {
         this.ip = ip;
     }
@@ -14,9 +14,6 @@ public class AndroidDevice {
     public void setVersion(String version) {
         this.version = version;
     }
-    public void setStatus(String version) {
-        this.status = status;
-    }
     public String getIP() {
         return ip;
     }
@@ -25,8 +22,5 @@ public class AndroidDevice {
     }
     public String getVersion() {
         return version;
-    }
-    public String getStatus() {
-        return status;
     }
 }
