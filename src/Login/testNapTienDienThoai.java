@@ -7,97 +7,40 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import net.miginfocom.swing.MigLayout;
 import org.apache.commons.exec.*;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.*;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ThreadGuard;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
- * Created by luongle on 10/27/16.
+ * Created by luongle on 10/31/16.
  */
-
-public class LoginthenLogout implements Runnable {
-
-    @Override public synchronized void run() {
-        try {
-            startAppium();
-//            int i = 0;
-//            while (true) {
-//                Thread.sleep(500);
-//                System.out.println(i++);
-//            }
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("automationName", "Appium");
-            capabilities.setCapability("platformName", "Android");
-            capabilities.setCapability("platformVersion", device.getVersion());
-            capabilities.setCapability("deviceName", device.getName());
-            //capabilities.setCapability("deviceName", "Chip's S7");
-            //capabilities.setCapability("app","/Users/luongle/Downloads/EU_v3464_17.7.apk");
-            capabilities.setCapability("app", APKpath.getText());
-            //capabilities.setCapability("app", System.getProperty("user.home") + "/Downloads/EU_v3464_17.7.apk");
-            capabilities.setCapability("appPackage", "com.mservice");
-            capabilities.setCapability(MobileCapabilityType.TAKES_SCREENSHOT, "true");
-
-            String sdt = "01231231236";
-            String pass = "111111";
-            String OTP = "";
-
-            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-            wait = new WebDriverWait(driver, 30);
-            element = driver.findElement(By.id("com.mservice:id/main_content"));
-            takeScreenShot();
-            wait.until(ExpectedConditions.visibilityOf(element));
-//        swipeScreen("right", 1);
-//        Thread.sleep(2000);
-//        swipeScreen("left", 1);
-//        Thread.sleep(2000);
-            driver.findElement(By.id("com.mservice:id/button_continue_text")).click();
-            typingText(sdt, "com.mservice:id/tv_phone_number");
-            driver.findElement(By.id("com.mservice:id/button_continue_text")).click();
-            driver.findElement(By.id("com.mservice:id/btnConfirm")).click(); //btnCancel
-            while (OTP == "") {
-                OTP = getOTP(sdt);
-            }
-            typingText(OTP, "com.mservice:id/et_sms_code_enter");
-            takeScreenShot();
-            driver.findElement(By.id("com.mservice:id/button_confirm_sms_code_text")).click();
-            typingText(pass, "com.mservice:id/txtPass1");
-            driver.findElement(By.id("com.mservice:id/button_confirm_text")).click();
-            //driver.findElement(By.xpath("//android.widget.ImageView[3]")).click();
-            element = driver.findElement(By.id("com.mservice:id/root"));
-            wait.until(ExpectedConditions.visibilityOf(element));
-            driver.findElement(MobileBy.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[4]/android.widget.ImageView[1]")).click();
-            takeScreenShot();
-            driver.findElement(MobileBy.xpath("//android.widget.TextView[@text='ĐỒNG Ý']")).click();
-            driver.navigate().back();
-            driver.navigate().back();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+public class testNapTienDienThoai implements Runnable {
 
     private static AndroidDriver driver;
     private static WebDriverWait wait;
@@ -106,23 +49,78 @@ public class LoginthenLogout implements Runnable {
     private static boolean isConfigurated = false;
     private static AndroidDevice device;
     private static Thread t;
+    private static testNapTienDienThoai l;
 
-    public static void main(String[] args) throws Exception {
+    @Override
+    public synchronized void run() {
+        try {
+            startAppium();
+
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("automationName", "Appium");
+            capabilities.setCapability("platformName", "Android");
+            capabilities.setCapability("platformVersion", device.getVersion());
+            capabilities.setCapability("deviceName", device.getName());
+            capabilities.setCapability("app", APKpath.getText());
+            capabilities.setCapability("appPackage", "com.mservice");
+            capabilities.setCapability(MobileCapabilityType.TAKES_SCREENSHOT, "true");
+
+            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @BeforeTest
+    public static void startTest() throws Exception {
 
         setAndroidsettings();
 
-        while (true) {
-            if (!isConfigurated) Thread.sleep(100);
-            else {
-                LoginthenLogout l = new LoginthenLogout();
-                t = new Thread(l);
-                t.start();
-                isConfigurated = false;
-            }
+        while (!isConfigurated) {
+            Thread.sleep(100);
         }
-//        //driver.findElement(By.xpath("android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.ScrollView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.EditText[1]"));
-//        driver.findElementByAndroidUIAutomator("UiSelector().className(\"android.widget.EditText\")").sendKeys("123");
 
+        l = new testNapTienDienThoai();
+        t = new Thread(l);
+        t.start();
+        t.join();
+    }
+
+    @Test
+    public static void testCase1() throws Exception {
+
+        wait = new WebDriverWait(driver, 30);
+        //click Nạp tiền điện thoại
+        element = driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.widget.ScrollView[1]/android.view.View[1]/android.widget.ScrollView[1]/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.view.View[1]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+        //chọn mệnh giá 10k
+        element = driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.support.v4.view.ViewPager[1]/android.view.View[1]/android.view.View[1]/android.widget.ScrollView[1]/android.view.View[1]/android.view.View[5]/android.view.View[1]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+        //click Tiếp Tục
+        element = driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.support.v4.view.ViewPager[1]/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.widget.TextView[1]"));
+        element.click();
+        //click Nạp tiền điện thoại
+        element = driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.widget.TextView[1]"));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+
+//        element = driver.findElement(By.xpath("//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.Button[1]"));
+//        wait.until(ExpectedConditions.elementToBeClickable(element));
+//        element.click();
+        //click back
+//        element = driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.view.View[2]/android.view.View[2]/android.view.View[1]"));
+//        wait.until(ExpectedConditions.elementToBeClickable(element));
+//        element.click();
+
+    }
+
+    @AfterTest
+    public static void stopTest() throws Exception {
+        driver.quit();
+        stopAppium();
     }
 
     private static void startAppium() throws Exception {
@@ -146,6 +144,7 @@ public class LoginthenLogout implements Runnable {
         try {
             executor.setStreamHandler(psh);
             executor.execute(command, resultHandler);
+            System.out.println("Appium server is starting...");
             while (!isAppiumStarted) {
                 Thread.sleep(100);
                 for (String line:stdout.getLines()) {
@@ -163,29 +162,6 @@ public class LoginthenLogout implements Runnable {
 
     private static void stopAppium() throws Exception {
         Runtime.getRuntime().exec("killall node");
-    }
-
-    private static String getOTP(String sdt) throws Exception{
-        System.setProperty("webdriver.chrome.driver", "/Users/luongle/Downloads/chromedriver");
-        WebDriver driver = new ChromeDriver();
-        driver.get("http://172.16.43.132:9091/#/streams/MoMo%20Auth%20Code");
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        WebElement element = driver.findElement(By.className("stream-lines"));
-        wait.until(ExpectedConditions.textToBePresentInElement(element, sdt));
-        String[] lines = element.getText().split(System.getProperty("line.separator"));
-        for (String a: lines) {
-            if (a.contains(sdt)) {
-                String pattern = "(?<=,)(.*)(?=\\))";
-                Pattern r = Pattern.compile(pattern);
-                Matcher m = r.matcher(a);
-                if (m.find()) {
-                    driver.close();
-                    return m.group(0);
-                }
-            }
-        }
-        driver.close();
-        return "";
     }
 
     private static void typingText(String txt, String eid) {
@@ -218,29 +194,6 @@ public class LoginthenLogout implements Runnable {
         }
     }
 
-    private static void swipeScreen(String direction, int times) throws InterruptedException{
-        Dimension size = driver.manage().window().getSize();
-
-        switch (direction) {
-            case "left":
-                for (int i = 0; i < times; i++) {
-                    driver.swipe((int)(size.width*0.001), size.height/2, (int)(size.width*0.99), size.height/2, 150);
-                }
-            case "right":
-                for (int i = 0; i < times; i++) {
-                    driver.swipe((int)(size.width*0.99), size.height/2, (int)(size.width*0.001), size.height/2, 150);
-                }
-            case "up":
-                for (int i = 0; i < times; i++) {
-                    driver.swipe(size.width/2, (int)(size.height*0.99), size.width/2, (int)(size.height*0.001), 150);
-                }
-            case "down":
-                for (int i = 0; i < times; i++) {
-                    driver.swipe(size.width/2, (int)(size.height*0.001), size.width/2, (int)(size.height*0.99), 150);
-                }
-        }
-    }
-
     private static void takeScreenShot() {
         // Set folder name to store screenshots.
         String destDir = "screenshots";
@@ -265,6 +218,7 @@ public class LoginthenLogout implements Runnable {
         final JFrame frame = new JFrame("Android Settings");
         JPanel panel = new JPanel(new MigLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         APKpath = new JTextField(30);
         APKpath.setText(new String(Files.readAllBytes(Paths.get("src/Login/apkpath.txt"))));
 
@@ -333,7 +287,8 @@ public class LoginthenLogout implements Runnable {
                 t.stop();
                 driver.quit();
                 stopAppium();
-                JOptionPane.showMessageDialog(null, "Appium server stopped.");
+//                Thread currentT = Thread.currentThread();
+//                currentT.interrupt();
                 System.out.println("Appium server stopped.");
             } catch (Exception e1) {
                 JOptionPane.showMessageDialog(null, "The Appium server is not started yet.", "Appium warning", JOptionPane.WARNING_MESSAGE);
@@ -394,6 +349,4 @@ public class LoginthenLogout implements Runnable {
 
         return devices;
     }
-
 }
-
