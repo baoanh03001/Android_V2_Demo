@@ -166,7 +166,7 @@ public class LoginthenLogout implements Runnable {
     }
 
     private static String getOTP(String sdt) throws Exception{
-        System.setProperty("webdriver.chrome.driver", "/Users/luongle/Downloads/chromedriver");
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.home") + "/Downloads/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.get("http://172.16.43.132:9091/#/streams/MoMo%20Auth%20Code");
         WebDriverWait wait = new WebDriverWait(driver, 30);
