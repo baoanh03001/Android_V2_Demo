@@ -10,5 +10,9 @@
     <orderEntry type="library" name="selenium-server-standalone-2.53.0" level="project" />
     <orderEntry type="library" name="java-client-3.2.0" level="project" />
     <orderEntry type="library" name="miglayout-4.0" level="project" />
+    <orderEntry type="library" name="extentreports-2.41.2" level="project" />
+    <orderEntry type="library" name="ant-1.7.0" level="project" />
+    <orderEntry type="library" name="extentreports-3.0.0" level="project" />
+    <orderEntry type="library" name="bsh-2.0b4" level="project" />
   </component>
 </module>
