@@ -4,7 +4,6 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -103,28 +102,25 @@ public class testNapTienVaoVi implements Runnable {
         extent.attachReporter(htmlReporter);
     }
 
-    @Test
+    //@Test
     public static void testCase1() throws Exception {
         test = extent.createTest("Test Case 1");
         wait = new WebDriverWait(driver, 30);
         try {
             //click Nạp tiền vào ví
-            stepClick("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[2]/android.view.ViewGroup[1]"
-                    , "Click Vào ví của tôi");
+            stepClick("//android.widget.TextView[@text='NẠP TIỀN\nVÀO VÍ']", "Click Vào ví của tôi");
 
             //nhập số tiền
-            element = driver.findElement(MobileBy.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.widget.ScrollView[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.widget.EditText[1]"));
+            element = driver.findElement(By.xpath("//android.widget.EditText[@text='Nhập số tiền']"));
             typingText("10000", element);
             test.addScreenCaptureFromPath(takeScreenShot());
             test.log(Status.PASS, "Nhập số tiền");
 
             //click Nạp tiền
-            stepClick("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]"
-                    , "Click nạp tiền");
+            stepClick("//android.widget.TextView[@text='Nạp tiền']", "Click nạp tiền");
 
             //click Xác nhận
-            stepClick("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.widget.ImageView[1]"
-                    , "Click Xác nhận nạp tiền");
+            stepClick("//android.widget.TextView[@text='Xác nhận']", "Click Xác nhận nạp tiền");
 
             //nhập mật khẩu
             typingPasscode(pass);
@@ -132,20 +128,10 @@ public class testNapTienVaoVi implements Runnable {
             test.log(Status.PASS, "Nhập mật khẩu");
 
             //Xác nhận
-            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]")));
-            //List<WebElement> elements = driver.findElements(MobileBy.xpath("//android.widget.TextView[@text='" + "Giao dịch thành công!" + "']"));
-            boolean isSuccess = false;
-            List<WebElement> elements = driver.findElements(MobileBy.className("android.widget.TextView"));
-            for (WebElement e: elements) {
-                if (e.getText().contains("Giao dịch thành công!")) {
-                    isSuccess = true;
-                    break;
-                } else {
-                    isSuccess = false;
-                }
-            }
-
-            if (isSuccess) test.pass("Giao dịch thành công"); else test.fail("Giao dịch thất bại");
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.TextView[@text='Số dư trong ví']")));
+            if (driver.findElement(By.xpath("//android.widget.TextView[@text='Giao dịch thành công!']")).isDisplayed())
+                test.pass("Giao dịch thành công");
+            else test.fail("Giao dịch thất bại");
             test.addScreenCaptureFromPath(takeScreenShot());
             driver.navigate().back();
         } catch (Exception e) {
@@ -155,37 +141,27 @@ public class testNapTienVaoVi implements Runnable {
         }
     }
 
-    @Test
+    //@Test
     public static void testCase2() throws Exception {
         test = extent.createTest("Test Case 2");
         wait = new WebDriverWait(driver, 30);
         try {
             //click Nạp tiền vào ví
-            stepClick("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[2]/android.view.ViewGroup[1]"
-                    , "Click Vào ví của tôi");
+            stepClick("//android.widget.TextView[@text='NẠP TIỀN\nVÀO VÍ']", "Click Vào ví của tôi");
 
             //nhập số tiền
-            element = driver.findElement(MobileBy.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.widget.ScrollView[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.widget.EditText[1]"));
+            element = driver.findElement(By.xpath("//android.widget.EditText[@text='Nhập số tiền']"));
             typingText("1000", element);
             test.addScreenCaptureFromPath(takeScreenShot());
             test.log(Status.PASS, "Nhập số tiền");
 
             //click Nạp tiền
-            stepClick("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]"
-                    , "Click nạp tiền");
+            stepClick("//android.widget.TextView[@text='Nạp tiền']", "Click nạp tiền");
 
-            boolean isSuccess = false;
-            List<WebElement> elements = driver.findElements(MobileBy.className("android.widget.TextView"));
-            for (WebElement e: elements) {
-                if (e.getText().contains("Số tiền tối thiểu là ")) {
-                    isSuccess = true;
-                    break;
-                } else {
-                    isSuccess = false;
-                }
-            }
+            if (driver.findElement(By.xpath("//android.widget.TextView[contains(@text, 'Số tiền tối thiểu là ')]")).isDisplayed())
+                test.fail("Sai giới hạn min");
+            else test.pass("Đúng giới hạn min");
 
-            if (isSuccess) test.fail("Sai giới hạn min"); else test.pass("Đúng giới hạn min");
             test.addScreenCaptureFromPath(takeScreenShot());
             driver.navigate().back();
         } catch (Exception e) {
@@ -201,22 +177,19 @@ public class testNapTienVaoVi implements Runnable {
         wait = new WebDriverWait(driver, 30);
         try {
             //click Nạp tiền vào ví
-            stepClick("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.support.v4.view.ViewPager[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[2]/android.view.ViewGroup[1]"
-                    , "Click Vào ví của tôi");
+            stepClick("//android.widget.TextView[@text='NẠP TIỀN\nVÀO VÍ']", "Click Vào ví của tôi");
 
             //nhập số tiền
-            element = driver.findElement(MobileBy.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.widget.ScrollView[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.widget.EditText[1]"));
+            element = driver.findElement(By.xpath("//android.widget.EditText[@text='Nhập số tiền']"));
             typingText("10000", element);
             test.addScreenCaptureFromPath(takeScreenShot());
             test.log(Status.PASS, "Nhập số tiền");
 
             //click Nạp tiền
-            stepClick("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1"
-                    , "Click nạp tiền");
+            stepClick("//android.widget.TextView[@text='Nạp tiề']", "Click nạp tiền");
 
             //click Xác nhận
-            stepClick("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]"
-                    , "Xác nhận nạp tiền");
+            stepClick("//android.widget.TextView[@text='Xác nhận']", "Click Xác nhận nạp tiền");
 
             //nhập mật khẩu
             typingPasscode(pass);
@@ -224,20 +197,10 @@ public class testNapTienVaoVi implements Runnable {
             test.log(Status.PASS, "Nhập mật khẩu");
 
             //Xác nhận
-            wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup[1]")));
-            //List<WebElement> elements = driver.findElements(MobileBy.xpath("//android.widget.TextView[@text='" + "Giao dịch thành công!" + "']"));
-            boolean isSuccess = false;
-            List<WebElement> elements = driver.findElements(MobileBy.className("android.widget.TextView"));
-            for (WebElement e: elements) {
-                if (e.getText().contains("Giao dịch thành công!")) {
-                    isSuccess = true;
-                    break;
-                } else {
-                    isSuccess = false;
-                }
-            }
-
-            if (isSuccess) test.pass("Giao dịch thành công"); else test.fail("Giao dịch thất bại");
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.TextView[@text='Số dư trong ví']")));
+            if (driver.findElement(By.xpath("//android.widget.TextView[@text='Giao dịch thành công!']")).isDisplayed())
+                test.pass("Giao dịch thành công");
+            else test.fail("Giao dịch thất bại");
             test.addScreenCaptureFromPath(takeScreenShot());
             driver.navigate().back();
         } catch (Exception e) {
@@ -330,7 +293,7 @@ public class testNapTienVaoVi implements Runnable {
 
         if (txt != null || txt.length() > 0) {
             for (char c: txt.toCharArray()) {
-                driver.findElement(MobileBy.xpath("//android.widget.TextView[@text='" + c + "']")).click();
+                driver.findElement(By.xpath("//android.widget.TextView[@text='" + c + "']")).click();
             }
         }
 
@@ -497,13 +460,13 @@ public class testNapTienVaoVi implements Runnable {
 
     private static String shortenExceptionMessage(String mes) {
         String a = mes.substring(0, mes.indexOf(".") + 1);
-        a += System.lineSeparator();
+        a += "<br>";
         a += mes.substring(mes.indexOf("***") + 3);
         return a;
     }
 
     private static void stepClick(String xpath, String logMessage) throws Exception {
-        driver.findElement(MobileBy.xpath(xpath)).click();
+        driver.findElement(By.xpath(xpath)).click();
         test.addScreenCaptureFromPath(takeScreenShot());
         test.pass(logMessage);
     }
