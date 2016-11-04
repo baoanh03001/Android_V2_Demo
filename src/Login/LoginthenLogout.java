@@ -266,7 +266,7 @@ public class LoginthenLogout implements Runnable {
         JPanel panel = new JPanel(new MigLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         APKpath = new JTextField(30);
-        APKpath.setText(new String(Files.readAllBytes(Paths.get("src/Login/apkpath.txt"))));
+        APKpath.setText(new String(Files.readAllBytes(Paths.get("src/Login/appium_caps.txt"))));
 
         final JButton browseAPK = new JButton("Choose");
         browseAPK.addActionListener((e) -> {
@@ -278,7 +278,7 @@ public class LoginthenLogout implements Runnable {
                 File file = fc.getSelectedFile();
                 APKpath.setText(file.getPath());
                 try {
-                    Files.write(Paths.get("src/Login/apkpath.txt"), file.getPath().getBytes());
+                    Files.write(Paths.get("src/Login/appium_caps.txt"), file.getPath().getBytes());
                 } catch (IOException ex) {
 
                 }

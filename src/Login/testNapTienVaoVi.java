@@ -179,10 +179,13 @@ public class testNapTienVaoVi implements Runnable {
         wait = new WebDriverWait(driver, 30);
         try {
             //click Nạp tiền vào ví
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.TextView[@text='NẠP TIỀN\nVÀO VÍ']")));
+            System.out.println(driver.currentActivity());
             stepClick("//android.widget.TextView[@text='NẠP TIỀN\nVÀO VÍ']", "Click Vào ví của tôi");
 
             //nhập số tiền
             element = driver.findElement(By.xpath("//android.widget.EditText[@text='Nhập số tiền']"));
+
             typingText("10000", element);
             test.addScreenCaptureFromPath(takeScreenShot());
             test.log(Status.PASS, "Nhập số tiền");
@@ -203,6 +206,7 @@ public class testNapTienVaoVi implements Runnable {
             if (driver.findElement(By.xpath("//android.widget.TextView[@text='Giao dịch thành công!']")).isDisplayed())
                 test.pass("Giao dịch thành công");
             else test.fail("Giao dịch thất bại");
+
             test.addScreenCaptureFromPath(takeScreenShot());
             driver.navigate().back();
         } catch (Exception e) {
