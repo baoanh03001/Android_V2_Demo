@@ -14,10 +14,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -25,10 +27,7 @@ import org.testng.annotations.Test;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.nio.file.Files;
@@ -108,6 +107,7 @@ public class testNapTienVaoVi implements Runnable {
         wait = new WebDriverWait(driver, 30);
         try {
             //click Nạp tiền vào ví
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.TextView[@text='NẠP TIỀN\nVÀO VÍ']")));
             stepClick("//android.widget.TextView[@text='NẠP TIỀN\nVÀO VÍ']", "Click Vào ví của tôi");
 
             //nhập số tiền
@@ -135,9 +135,11 @@ public class testNapTienVaoVi implements Runnable {
             test.addScreenCaptureFromPath(takeScreenShot());
             driver.navigate().back();
         } catch (Exception e) {
-            test.error(shortenExceptionMessage(e.getMessage()));
-            test.addScreenCaptureFromPath(takeScreenShot());
-            driver.navigate().back();
+            if (!driver.currentActivity().contains("Launcher")) {
+                test.error(shortenExceptionMessage(e.getMessage()));
+                test.addScreenCaptureFromPath(takeScreenShot());
+                driver.navigate().back();
+            }
         }
     }
 
@@ -208,6 +210,22 @@ public class testNapTienVaoVi implements Runnable {
             test.addScreenCaptureFromPath(takeScreenShot());
             driver.navigate().back();
         }
+    }
+
+    @AfterMethod
+    public static void crashHandler() throws Exception {
+        List<LogEntry> crashlog = driver.manage().logs().get("logcat").getAll();
+        File logFile = new File("src/crashlog.txt");
+        PrintWriter writer = new PrintWriter(logFile);
+        //adb -s tendevice logcat nếu có nhiều devices
+        if (driver.currentActivity().contains("Launcher")) {
+            for (LogEntry l: crashlog) {
+                writer.println(l);
+            }
+        }
+        writer.close();
+        driver.quit();
+        stopAppium();
     }
 
     @AfterTest
