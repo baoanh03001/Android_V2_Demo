@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Main Test Suite" verbose="2">
-    <test name="TestNG Test Group">
+<suite name="Default Suite">
+    <test name="Android_V2_Demo">
         <classes>
             <class name="test.init"/>
+            <class name="test.testA"/>
+            <class name="test.testB"/>
         </classes>
     </test>
 </suite>

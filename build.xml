@@ -1,0 +1,92 @@
+<project name="TestNGTest" default="test" basedir=".">
+
+    <!-- Project Libraries -->
+
+    <path id="library.bsh-2.0b4.classpath">
+        <pathelement location="${basedir}/lib/bsh-2.0b4.jar"/>
+        <pathelement location="${basedir}/lib/bson-3.3.0.jar"/>
+        <pathelement location="${basedir}/lib/commons-codec-1.9.jar"/>
+        <pathelement location="${basedir}/lib/commons-logging-1.2.jar"/>
+        <pathelement location="${basedir}/lib/extentreports-3.0.0.jar"/>
+        <pathelement location="${basedir}/lib/freemarker-2.3.23.jar"/>
+        <pathelement location="${basedir}/lib/httpclient-4.5.2.jar"/>
+        <pathelement location="${basedir}/lib/httpcore-4.4.4.jar"/>
+        <pathelement location="${basedir}/lib/httpmime-4.1.jar"/>
+        <pathelement location="${basedir}/lib/java-client-3.2.0.jar"/>
+        <pathelement location="${basedir}/lib/jcommander-1.48.jar"/>
+        <pathelement location="${basedir}/lib/jsoup-1.9.2.jar"/>
+        <pathelement location="${basedir}/lib/miglayout-4.0.jar"/>
+        <pathelement location="${basedir}/lib/mongodb-driver-3.3.0.jar"/>
+        <pathelement location="${basedir}/lib/mongodb-driver-core-3.3.0.jar"/>
+        <pathelement location="${basedir}/lib/selenium-server-standalone-2.53.0.jar"/>
+        <pathelement location="${basedir}/lib/testng-6.9.10.jar"/>
+    </path>
+
+    <path id="library.extentreports-3.0.0.classpath">
+        <pathelement location="${basedir}/lib/extentreports-3.0.0.jar"/>
+    </path>
+
+    <path id="library.java-client-3.2.0.classpath">
+        <pathelement location="${basedir}/lib/java-client-3.2.0.jar"/>
+    </path>
+
+    <path id="library.miglayout-4.0.classpath">
+        <pathelement location="${basedir}/lib/miglayout-4.0.jar"/>
+    </path>
+
+    <path id="library.selenium-server-standalone-2.53.0.classpath">
+        <pathelement location="${basedir}/lib/selenium-server-standalone-2.53.0.jar"/>
+    </path>
+
+    <!-- Define <testng> task -->
+
+    <taskdef name="testng" classname="org.testng.TestNGAntTask">
+        <classpath>
+            <pathelement location="${basedir}/lib/testng-6.9.10.jar"/>
+        </classpath>
+    </taskdef>
+
+    <taskdef resource="testngtasks" classpath="${basedir}/lib/testng-6.9.10.jar" />
+
+    <property name="testdir" location="test" />
+    <property name="srcdir" location="src/test" />
+    <property name="srcdir2" location="src/Login" />
+    <property name="libdir" location="lib" />
+    <property name="full-compile" value="true" />
+
+    <path id="classpath.base"/>
+    <path id="classpath.test">
+
+        <fileset dir="${libdir}">
+            <include name="**/*.jar" />
+        </fileset>
+
+        <pathelement location="${srcdir}" />
+        <pathelement location="${testdir}" />
+
+
+        <path refid="classpath.base" />
+    </path>
+
+    <target name="clean" >
+        <delete verbose="${full-compile}">
+            <fileset dir="${testdir}" includes="**/*.class" />
+        </delete>
+    </target>
+
+    <target name="compile" depends="clean">
+        <javac destdir="${testdir}" verbose="${full-compile}">
+            <src path="${libdir}"/>
+            <src path="${srcdir2}"/>
+            <src path="${srcdir}"/>
+            <classpath refid="classpath.test"/>
+        </javac>
+    </target>
+
+    <target name="test" depends="compile">
+        <testng outputdir="${testdir}" classpathref="classpath.test" useDefaultListeners="false">
+            <xmlfileset dir="${srcdir}" includes="testnaptien.xml"/>
+        </testng>
+    </target>
+
+</project>

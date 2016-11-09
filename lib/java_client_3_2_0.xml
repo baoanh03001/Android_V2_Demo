@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="java-client-3.2.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/.idea/libraries/java-client-3.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java-client-3.2.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
